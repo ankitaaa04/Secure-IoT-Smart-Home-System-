@@ -1,0 +1,315 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 240px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    height: 100vh;
+}
+
+.sidebar h2 {
+    margin-bottom: 5px;
+}
+
+.sidebar p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* MENU */
+.menu {
+    margin-top: 20px;
+}
+
+.menu a {
+    display: block;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: linear-gradient(90deg, #7c3aed, #c084fc);
+}
+
+.menu .active {
+    background: linear-gradient(90deg, #7c3aed, #ec4899);
+}
+
+/* CONNECTION BOX */
+.connection-box {
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+}
+
+/* ================= MAIN ================= */
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+/* ================= HEADINGS ================= */
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #aaa;
+}
+
+/* ================= CARDS ================= */
+.cards {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 26px;
+    margin-top: 5px;
+}
+
+/* COLORS */
+.red { background: linear-gradient(135deg,#ff6b6b,#ff8787); }
+.blue { background: linear-gradient(135deg,#4dabf7,#74c0fc); }
+.green { background: linear-gradient(135deg,#51cf66,#69db7c); }
+
+/* ================= CONTROLS ================= */
+.controls {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.control-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+}
+
+.control-card i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* ================= TOGGLE ================= */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    margin-top: 10px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    background: #555;
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background: #7c3aed;
+}
+
+input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+/* ================= BOTTOM GRID ================= */
+.bottom-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.logs-box, .security-box {
+    flex: 1;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* ================= AUTH (LOGIN/SIGNUP) ================= */
+.auth-body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* IMAGE + OVERLAY */
+    background:
+        linear-gradient(rgba(15,12,41,0.7), rgba(48,43,99,0.7)),
+        url("/static/bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* AUTH CONTAINER */
+.auth-container {
+    display: flex;
+    width: 850px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(25px);
+
+    box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* LEFT SIDE */
+.left {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* RIGHT SIDE */
+.right {
+    flex: 1;
+    padding: 40px;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* INPUTS */
+.right input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+/* BUTTON */
+.right button {
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #7c3aed, #c084fc);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.right button:hover {
+    transform: scale(1.05);
+}
+
+/* LINKS */
+a {
+    color: #c084fc;
+    text-decoration: none;
+}
+
+body.light {
+  background: white;
+  color: black;
+}
+
+/* ================= LIGHT MODE ================= */
+
+body.light {
+    background: #f5f5f5;
+    color: #111;
+}
+
+/* SIDEBAR */
+body.light .sidebar {
+    background: #ffffff;
+    color: #111;
+}
+
+/* SIDEBAR TEXT */
+body.light .sidebar h2,
+body.light .sidebar p,
+body.light .menu a {
+    color: #111;
+}
+
+/* MENU HOVER */
+body.light .menu a:hover {
+    background: #e0e0ff;
+}
+
+/* ACTIVE MENU */
+body.light .menu .active {
+    background: linear-gradient(90deg, #7c3aed, #c084fc);
+    color: white;
+}
+
+/* CARDS */
+body.light .card,
+body.light .control-card,
+body.light .logs-box,
+body.light .security-box {
+    background: #ffffff;
+    color: #111;
+}
+
+/* CONNECTION BOX */
+body.light .connection-box {
+    background: #eeeeee;
+    color: #111;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Home</title>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🏠 Smart Home</h2>
+    <p>Secure IoT Dashboard</p>
+
+<div class="menu">
+    <a href="/">Dashboard</a>
+    <a href="/devices">Devices</a>
+    <a href="/analytics">Analytics</a>
+    <a href="/logs">Logs</a>
+    <a href="/logout">Logout</a>
+</div>
+
+    <div class="connection-box">
+        <p>📡 Connected</p>
+        <small>127.0.0.1:9999</small>
+    </div>
+</div>
+
+<div class="main">
+
+    <h1>Hello, User 👋</h1>
+    <p class="subtitle">Welcome to your smart home dashboard</p>
+
+    <!-- CARDS -->
+    <div class="cards">
+
+        <div class="card gradient-red">
+            <i class="fa fa-temperature-high icon"></i>
+            <h3>Temperature</h3>
+            <p id="temp">26°C</p>
+        </div>
+
+        <div class="card gradient-blue">
+            <i class="fa fa-droplet icon"></i>
+            <h3>Humidity</h3>
+            <p id="humidity">59%</p>
+        </div>
+
+        <div class="card gradient-green">
+            <i class="fa fa-leaf icon"></i>
+            <h3>Air Quality</h3>
+            <p id="air">Good</p>
+        </div>
+
+    </div>
+
+    <!-- CONTROLS -->
+    <h2>Device Controls</h2>
+
+    <div class="controls">
+
+        <div class="control-card">
+            <i class="fa fa-lightbulb big-icon"></i>
+            <h3>Light</h3>
+            <label class="switch">
+                <input type="checkbox" onchange="toggleLight(this)">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="control-card">
+            <i class="fa fa-fan big-icon"></i>
+            <h3>Fan</h3>
+            <label class="switch">
+                <input type="checkbox" onchange="sendCommand('FAN ON')">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+    </div>
+
+<div class="bottom-grid">
+
+    <div class="logs-box">
+        <h3>Recent Activity</h3>
+        <p>✔ Light ON</p>
+        <p>✔ Fan ON</p>
+    </div>
+
+    <div class="security-box">
+        <h3>🔒 Secure Connection</h3>
+        <p>RSA + AES Encryption</p>
+    </div>
+
+</div>
+
+    <!-- LOGS -->
+    <div class="logs">
+        <h3>Recent Activity</h3>
+        <div id="log-box">
+            <p>✔ System Started</p>
+        </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="security">
+        <h3>🔒 Secure Connection</h3>
+        <p>RSA + AES Encryption Active</p>
+    </div>
+
+</div>
+
+<script>
+function sendCommand(cmd) {
+    fetch("/command", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({command: cmd})
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("log-box").innerHTML += "<p>✔ " + cmd + "</p>";
+    });
+}
+
+function toggleLight(el) {
+    sendCommand(el.checked ? "LIGHT ON" : "LIGHT OFF");
+}
+
+// live data
+setInterval(() => {
+    document.getElementById("temp").innerText = Math.floor(Math.random()*10+25) + "°C";
+    document.getElementById("humidity").innerText = Math.floor(Math.random()*30+40) + "%";
+    document.getElementById("air").innerText = ["Good","Moderate","Poor"][Math.floor(Math.random()*3)];
+}, 2000);
+</script>
+
+<script>
+function showSection(name){
+    alert(name + " section clicked (you can extend this)");
+}
+</script>
+
+<button onclick="toggleTheme()">🌗 Toggle Theme</button>
+
+<script>
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+</script>
+</body>
+</html>

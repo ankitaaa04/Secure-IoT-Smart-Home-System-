@@ -1,0 +1,22 @@
+<h1>Logs</h1>
+<div id="logs"></div>
+
+<script>
+function loadLogs(){
+ fetch("/get_logs")
+ .then(r=>r.json())
+ .then(data=>{
+   const box=document.getElementById("logs");
+   box.innerHTML="";
+
+   data.slice().reverse().forEach(l=>{
+     let p=document.createElement("p");
+     p.innerText = `${l.time} | ${l.action}`;
+     box.appendChild(p);
+   });
+ });
+}
+
+setInterval(loadLogs,2000);
+loadLogs();
+</script>

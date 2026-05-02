@@ -1,0 +1,43 @@
+<div class="main">
+<h1>Devices</h1>
+
+<div class="control-card">
+  <h3>Light</h3>
+  <label class="switch">
+    <input id="light" type="checkbox" onchange="toggle('light')">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div class="control-card">
+  <h3>Fan</h3>
+  <label class="switch">
+    <input id="fan" type="checkbox" onchange="toggle('fan')">
+    <span class="slider"></span>
+  </label>
+</div>
+</div>
+
+<script>
+function loadDevices(){
+  fetch("/get_devices")
+  .then(r=>r.json())
+  .then(d=>{
+    document.getElementById("light").checked = d.light;
+    document.getElementById("fan").checked = d.fan;
+  });
+}
+
+function toggle(name){
+  fetch("/toggle_device",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      device:name,
+      state:document.getElementById(name).checked
+    })
+  });
+}
+
+loadDevices();
+</script>

@@ -1,0 +1,40 @@
+<h1>Analytics</h1>
+<h3 id="alert" style="color:red;"></h3>
+<canvas id="chart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById("chart");
+
+let data = {
+ labels:[],
+ datasets:[
+  {label:"Temp", data:[], borderColor:"purple"},
+  {label:"Humidity", data:[], borderColor:"green"}
+ ]
+};
+
+const chart = new Chart(ctx,{type:"line",data:data});
+
+setInterval(()=>{
+ fetch("/get_data")
+ .then(r=>r.json())
+ .then(d=>{
+    let t=new Date().toLocaleTimeString();
+
+    data.labels.push(t);
+    data.datasets[0].data.push(d.temp);
+    data.datasets[1].data.push(d.humidity);
+
+    if(data.labels.length>10){
+      data.labels.shift();
+      data.datasets.forEach(ds=>ds.data.shift());
+    }
+
+    chart.update();
+
+    document.getElementById("alert").innerText = d.alert || "";
+ });
+},2000);
+</script>
